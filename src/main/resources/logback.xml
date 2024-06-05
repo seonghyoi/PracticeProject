@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- Console Log Setting -->
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<encoder>
+				<pattern>[%d{yyyy/MM/dd HH:mm:ss}] %highlight(%-5level)| %cyan(%-25.25logger{0}) | %msg%n</pattern>
+			</encoder>
+		</layout>
+	</appender>
+
+	<!-- 여기서 설정한 대로 로그 파일 이름이 생성된다. -->
+	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/logs/debug.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>[%-5level] %d{HH:mm:ss.SSS} %logger{36} - %msg%n</pattern>
+	</encoder>
+
+		
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/logs/debug.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>50MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>15</maxHistory>
+		</rollingPolicy>
+	</appender>
+	
+	
+	<!-- 로그 띄울 경로 설정 -->
+	<logger name="com.spring.practice" level="DEBUG" />
+	
+	
+	<!-- pc > 라이브러리 > Logs 폴더에 로그 파일이 생성되며 자동 저장된다. -->
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="file" />
+	</root>
+	
+</configuration>
