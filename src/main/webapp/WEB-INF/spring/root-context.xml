@@ -30,8 +30,8 @@
 			value="com.mysql.cj.jdbc.Driver"></property>
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/scott?"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="pr0devKsh!"></property>
+		<property name="username" value="scott"></property>
+		<property name="password" value="tiger"></property>
 	</bean>
 	
 	
