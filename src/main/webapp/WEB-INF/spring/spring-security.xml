@@ -9,4 +9,5 @@
 	<bean id="BCryptPasswordEncoder" name="BCryptPasswordEncoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 	</bean>
+	
 </beans>
