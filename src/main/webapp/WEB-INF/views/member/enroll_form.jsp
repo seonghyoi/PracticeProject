@@ -19,7 +19,7 @@
 			<form id="enrollForm" action="insertMember" class="was-validated" method="post">
 			  <div class="form-group">
 			    <label for="id">아이디:</label>
-			    <input type="text" class="form-control" id="id" placeholder="Enter id" name="id" required>
+			    <input type="text" class="form-control" id="id" placeholder="Enter ID" name="id" required>
 			    <div class="valid-feedback">입력 완료</div>
 			    <div class="invalid-feedback">아이디를 입력해 주세요.</div>
 			  </div>

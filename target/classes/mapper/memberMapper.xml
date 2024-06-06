@@ -11,6 +11,12 @@
 	</insert>
 	
 	
+	<select id="loginMember" parameterType="memberDTO" resultType="memberDTO">
+		select * from users 
+		where id = #{id}
+	</select>
+	
+	
 	<update id="updateMember" parameterType="memberDTO">
 		update member 
 		set tel = #{tel}
@@ -38,21 +44,6 @@
 	<delete id="deleteMember" parameterType="String"> 
 		delete from member where id = #{id} 
 	</delete>
-	
-	
-	<select id="loginMember" parameterType="memberDTO" resultType="memberDTO">
-		<!--  암호화 전
-		select * from member 
-		where id = #{id} and pw = #{pw} -->
-		
-		<!-- select * from memberwhere user_id=#{userId}  and status='Y' 예외테스트
-		select * from member 
-		where user_id=#{userId}  and status='Y' -->
-		
-		select * from member 
-		where id = #{id}
-		
-	</select>
 	
 	
 </mapper>

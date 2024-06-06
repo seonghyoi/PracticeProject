@@ -6,4 +6,6 @@ public interface MemberService {
 
 	void insertMember(MemberDTO memberDTO) throws Exception;
 
+	MemberDTO loginMember(MemberDTO memberDTO) throws Exception;
+
 }

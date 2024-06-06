@@ -70,13 +70,13 @@
             
                 <!-- 로그인 전 -->
                 <c:if test="${ empty sessionScope.loginUser }">
-	                <a href="${ pageContext.servletContext.contextPath }/member/enrollForm" >회원가입</a>  |  
+	                <a href="${ pageContext.servletContext.contextPath }/member/enrollForm" >회원가입</a> &nbsp;|&nbsp;
 	                <a data-toggle="modal" data-target="#loginModal">로그인</a> 
                 </c:if>
                 
                 <c:if test="${ !empty sessionScope.loginUser }">
-	                <label>${ sessionScope.loginUser.name }님 환영합니다</label> &nbsp;&nbsp;
-	                <a href="${ pageContext.servletContext.contextPath }/member/myPage">마이페이지</a>
+	                <label>[&nbsp;&nbsp;'${ sessionScope.loginUser.name }'님 환영합니다!&nbsp;&nbsp;]</label> &nbsp;&nbsp;&nbsp;
+	                <a href="${ pageContext.servletContext.contextPath }/member/myPage">마이페이지</a> &nbsp;|&nbsp;
 	                <a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a>
                 </c:if>  
                 
@@ -89,16 +89,16 @@
             <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Login</h4>
+                <h4 class="modal-title">로그인</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button> 
             </div>
 
             <form action="${ pageContext.servletContext.contextPath }/member/login" method="post">
                 <!-- Modal Body -->
                 <div class="modal-body">
-                    <label for="userId" class="mr-sm-2">ID :</label>
+                    <label for="userId" class="mr-sm-2">아이디:</label>
                     <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter ID" id="userId" name="id"> <br>
-                    <label for="userPwd" class="mr-sm-2">Password:</label>
+                    <label for="userPwd" class="mr-sm-2">비밀번호:</label>
                     <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Enter password" id="userPwd" name="pw">
                 </div>
                 

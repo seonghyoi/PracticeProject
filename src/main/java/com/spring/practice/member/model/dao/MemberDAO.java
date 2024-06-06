@@ -16,6 +16,13 @@ public class MemberDAO {
 		return sqlSession.insert("memberMapper.insertMember", memberDTO);
 		
 	}
+	
+	
+	public MemberDTO loginMember(SqlSessionTemplate sqlSession, MemberDTO memberDTO) {
+		
+		return sqlSession.selectOne("memberMapper.loginMember", memberDTO);
+		
+	}
 
 	public int updateMember(SqlSessionTemplate sqlSession, MemberDTO memberDTO) {
 		
@@ -41,11 +48,7 @@ public class MemberDAO {
 		
 	}
 
-	public MemberDTO loginMember(SqlSessionTemplate sqlSession, MemberDTO memberDTO) {
-		
-		return sqlSession.selectOne("memberMapper.loginMember", memberDTO);
-		
-	}
+	
 	
 
 	

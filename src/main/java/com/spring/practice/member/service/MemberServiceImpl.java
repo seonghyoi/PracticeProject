@@ -44,4 +44,27 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	@Override
+	public MemberDTO loginMember(MemberDTO memberDTO) throws Exception {
+		
+		MemberDTO loginUser = memberDAO.loginMember(sqlSession, memberDTO);
+		
+		if(loginUser == null) {
+			
+			throw new Exception("로그인 유저 정보가 없습니다.");
+			
+		}
+		
+		if(!bCryptPasswordEncoder.matches(memberDTO.getPw(), loginUser.getPw())) {
+			
+			throw new Exception("암호 불일치!");
+			
+		}
+		
+		System.out.println("로그인에 성공한 유저는: " + loginUser);
+		
+		return loginUser;
+	
+	}
+
 }
