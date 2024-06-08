@@ -29,9 +29,9 @@
 		<property name="driverClassName"
 			value="com.mysql.cj.jdbc.Driver"></property>
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/scott?"></property>
-		<property name="username" value="scott"></property>
-		<property name="password" value="tiger"></property>
+			value="jdbc:mysql://localhost:3306/practice?"></property>
+		<property name="username" value="practice"></property>
+		<property name="password" value="practice"></property>
 	</bean>
 	
 	

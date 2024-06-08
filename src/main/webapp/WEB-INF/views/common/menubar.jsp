@@ -53,7 +53,7 @@
 			      <a class="nav-link" href="${ pageContext.servletContext.contextPath }">HOME</a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="${ pageContext.servletContext.contextPath }/board/board">게시판</a>
+			      <a class="nav-link" href="${ pageContext.servletContext.contextPath }/board/boardMain?page=1">게시판</a>
 			    </li>
 			    <li class="nav-item">
 			      <a class="nav-link" href="#">사진</a>

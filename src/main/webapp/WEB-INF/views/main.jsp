@@ -17,14 +17,6 @@
 		
 		<hr color="black" style="width: 95%;">
 		
-		<a href="member/member">
-			<button  class="btn btn-primary">회원CRUD페이지로</button>
-		</a>
-		<a href="board/bbs">
-			<button  class="btn btn-primary"">게시판CRUD페이지로</button>
-		</a>
-	
-		
 	</div>
 	
 	<jsp:include page="common/footer.jsp"/>

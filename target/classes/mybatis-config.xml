@@ -14,11 +14,14 @@
 	
 	<typeAliases>
 		<typeAlias type="com.spring.practice.member.model.dto.MemberDTO" alias="memberDTO"></typeAlias>
+		<typeAlias type="com.spring.practice.board.model.dto.BoardDTO" alias="boardDTO"></typeAlias>
+		<typeAlias type="com.spring.practice.board.model.dto.PageDTO" alias="pageDTO"></typeAlias>
    </typeAliases>
    
    <mappers>
    <!-- SQL문 정의하는 파일들의 목록을 지정. 테이블당 한개 사용 -->
       <mapper resource="mapper/memberMapper.xml" />
+      <mapper resource="mapper/boardMapper.xml" />
    </mappers>
    
    
