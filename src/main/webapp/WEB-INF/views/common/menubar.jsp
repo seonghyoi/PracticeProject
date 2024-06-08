@@ -25,7 +25,7 @@
 
     /* 마우스를 올렸을 때 a 태그에 대한 스타일 지정 */
     #header_2>a:hover {
-    	color: skyblue; /* 링크의 텍스트 색상을 파란색으로 지정 */
+    	color: skyblue; /* 링크의 텍스트 색상을 하늘색으로 지정 */
         text-decoration: underline; /* 링크에 마우스를 올렸을 때 밑줄 추가 */
     }
 

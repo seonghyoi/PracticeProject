@@ -51,7 +51,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		if(loginUser == null) {
 			
-			throw new Exception("로그인 유저 정보가 없습니다.");
+			throw new Exception("로그인 회원 정보가 없습니다.");
 			
 		}
 		
@@ -61,10 +61,83 @@ public class MemberServiceImpl implements MemberService {
 			
 		}
 		
-		System.out.println("로그인에 성공한 유저는: " + loginUser);
+		System.out.println("로그인에 성공한 회원은: " + loginUser);
 		
 		return loginUser;
 	
+	}
+
+	@Override
+	public void updateMember(MemberDTO memberDTO) throws Exception {
+
+		int result = memberDAO.updateMember(sqlSession, memberDTO);
+		
+		if(result < 0) {
+			
+			throw new Exception("회원 정보 수정에 실패하였습니다.");
+			
+		}
+		
+	}
+
+	@Override
+	public MemberDTO selectMember(int userId) throws Exception {
+		
+		MemberDTO member = memberDAO.selectMember(sqlSession, userId);
+		
+		if(member == null) {
+			
+			throw new Exception("회원 정보가 없습니다.");
+			
+		}
+		
+		System.out.println("조회한 회원 정보는: " + member);
+		
+		return member;
+		
+	}
+
+	@Override
+	public void updatePassword(MemberDTO memberDTO) throws Exception {
+		
+		System.out.println("암호화 전 pw: " + memberDTO.getPw());
+		
+		String encPw = bCryptPasswordEncoder.encode(memberDTO.getPw());
+		
+		System.out.println("암호화 후 pw: " + encPw);
+		
+		memberDTO.setPw(encPw);
+		
+		int result = memberDAO.updatePassword(sqlSession, memberDTO);
+		
+		if(result < 0) {
+			
+			throw new Exception("비밀번호 수정에 실패하였습니다.");
+			
+		}
+		
+	}
+
+	@Override
+	public int deleteMember(int userId, String pw) throws Exception {
+		
+		int result = 0;
+		
+		MemberDTO member = memberDAO.selectMember(sqlSession, userId);
+				
+		if(!bCryptPasswordEncoder.matches(pw, member.getPw())) {
+			
+			result = 0;
+			
+		} else {
+			
+			result = memberDAO.deleteMember(sqlSession, userId);
+			
+		}
+		
+		return result;
+
+		
 	}
 
 }

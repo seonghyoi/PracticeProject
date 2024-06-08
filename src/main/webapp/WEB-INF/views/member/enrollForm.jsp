@@ -30,6 +30,12 @@
 			    <div class="invalid-feedback">비밀번호를 입력해 주세요.</div>
 			  </div>
 			  <div class="form-group">
+            	<label for="pwConfirm">비밀번호 확인:</label>
+            	<input type="password" class="form-control" id="pwConfirm" placeholder="Confirm password" name="pwConfirm" required>
+           		<div class="valid-feedback">비밀번호 확인 완료</div>
+           		<div class="invalid-feedback">비밀번호를 다시 확인해 주세요.</div>
+       	 	  </div>
+			  <div class="form-group">
 			    <label for="name">이름:</label>
 			    <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
 			    <div class="valid-feedback">입력 완료</div>
@@ -52,6 +58,26 @@
 			</form>
         </div>
     </div>
+    
+    <script>
+		function validatePasswords() {
+		    var pw = document.getElementById("pw").value;
+		    var pwConfirm = document.getElementById("pwConfirm").value;
+		
+		    if (pw !== pwConfirm) {
+		        document.getElementById("pwConfirm").setCustomValidity("비밀번호가 일치하지 않습니다. 다시 확인해 주세요.");
+		        return false;
+		    } else {
+		        document.getElementById("pwConfirm").setCustomValidity("");
+		        return true;
+		    }
+		}
+		
+		document.getElementById("pw").addEventListener('input', validatePasswords);
+		document.getElementById("pwConfirm").addEventListener('input', validatePasswords);
+	</script>
+
+    
 
 
     <!-- 푸터바 -->

@@ -18,15 +18,29 @@
 	
 	
 	<update id="updateMember" parameterType="memberDTO">
-		update member 
-		set tel = #{tel}
-		where id = #{id}
+		update users 
+		set
+		name = #{name},
+		tel = #{tel}
+		where userId = #{userId}
 	</update>
 	
 	
-	<select id="selectMember" parameterType="String" resultType="memberDTO">
-		select * from member
-		where id = #{id}
+	<update id="updatePassword" parameterType="memberDTO">
+		update users 
+		set pw = #{pw}
+		where userId = #{userId}
+	</update>
+	
+	
+	<delete id="deleteMember" parameterType="int"> 
+		delete from users where userId = #{userId} 
+	</delete>
+	
+	
+	<select id="selectMember" parameterType="int" resultType="memberDTO">
+		select * from users
+		where userId = #{userId}
 	</select>
 	
 	
@@ -41,9 +55,7 @@
 	</select>
 	
 	
-	<delete id="deleteMember" parameterType="String"> 
-		delete from member where id = #{id} 
-	</delete>
+	
 	
 	
 </mapper>

@@ -7,6 +7,7 @@ public class MemberDTO {
 	private String pw;
 	private String name;
 	private String tel;
+	private String createdDate;
 	
 	
 	public int getUserId() {
@@ -39,14 +40,20 @@ public class MemberDTO {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+	public String getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
+	}
+	
 	
 	
 	@Override
 	public String toString() {
-		return "MemberDTO [userId=" + userId + ", id=" + id + ", pw=" + pw + ", name=" + name + ", tel=" + tel + "]";
+		return "MemberDTO [userId=" + userId + ", id=" + id + ", pw=" + pw + ", name=" + name + ", tel=" + tel
+				+ ", createdDate=" + createdDate + "]";
 	}
-	
-	
 	
 	
 	

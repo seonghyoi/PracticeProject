@@ -17,7 +17,6 @@ public class MemberDAO {
 		
 	}
 	
-	
 	public MemberDTO loginMember(SqlSessionTemplate sqlSession, MemberDTO memberDTO) {
 		
 		return sqlSession.selectOne("memberMapper.loginMember", memberDTO);
@@ -29,16 +28,21 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.updateMember", memberDTO);
 
 	}
+	
+	public int updatePassword(SqlSessionTemplate sqlSession, MemberDTO memberDTO) {
+		
+		return sqlSession.update("memberMapper.updatePassword", memberDTO);
+	}
 
-	public int deleteMember(SqlSessionTemplate sqlSession, String id) {
+	public int deleteMember(SqlSessionTemplate sqlSession, int userId) {
 
-		return sqlSession.delete("memberMapper.deleteMember", id);
+		return sqlSession.delete("memberMapper.deleteMember", userId);
 		
 	}
 
-	public MemberDTO selectMember(SqlSessionTemplate sqlSession, String id) {
+	public MemberDTO selectMember(SqlSessionTemplate sqlSession, int UserId) {
 		
-		return sqlSession.selectOne("memberMapper.selectMember", id);
+		return sqlSession.selectOne("memberMapper.selectMember", UserId);
 		
 	}
 
@@ -47,6 +51,9 @@ public class MemberDAO {
 		return sqlSession.selectList("memberMapper.selectList");
 		
 	}
+
+
+	
 
 	
 	
