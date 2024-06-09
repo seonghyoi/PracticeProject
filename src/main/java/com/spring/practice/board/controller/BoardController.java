@@ -120,55 +120,81 @@ public class BoardController {
 
 		HttpSession session = request.getSession();
 		
-		// 파일을 저장할 경로 설정
-		String root = session.getServletContext().getRealPath("resources");
-				
+		// 로그인한 유저의 id를 memberDTO에서 가져와 boardDTO의 writer에 set
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("loginUser");
 		String writer = memberDTO.getId();
 		boardDTO.setWriter(writer);
 		
+		String root = session.getServletContext().getRealPath("resources");
+		
 		System.out.println("root : " + root);
 		
+		// 파일을 저장할 경로
 		String filePath = root + "/uploadFiles"; // mac은 \ 아니고 /
 		
-		// java.io의 File을 import
-		File mkdir = new File(filePath);
-		if(!mkdir.exists()) {
-			mkdir.mkdirs();
-		}
+		String savedName = "";
 		
-		// 파일명 변경 처리
-		// 첨부 파일의 이름을 가져온다.
-		String originFileName = img.getOriginalFilename();
-		// 거기서 확장자만 잘라서 변수에 저장한다.
-		String ext = originFileName.substring(originFileName.lastIndexOf("."));
-		// 랜덤한 파일이름을 생성한 후 뒤에 확장자를 붙인다.
-		String savedName = UUID.randomUUID().toString().replace("-", "") + ext;
+		// 첨부 파일이 있으면 true를, 없으면 false를 반환
+		System.out.println("img가 있는지 확인: " + !img.isEmpty());
 		
-		//파일을 저장한다.
-		try {
-			img.transferTo(new File(filePath + "/" + savedName)); // mac은 \ 아니고 /
+		// img가 있을 때
+		if(!img.isEmpty()) {
 			
-			System.out.println("img넣기 전>> " + boardDTO);
+			// java.io의 File을 import
+			// filePath에 폴더가 없으면 폴더 생성
+			File mkdir = new File(filePath);
+			if(!mkdir.exists()) {
+				mkdir.mkdirs();
+			}
 			
+			// 파일명 변경 처리
+			// 첨부 파일의 이름을 가져온다.
+			String originFileName = img.getOriginalFilename();
+			// 거기서 확장자만 잘라서 변수에 저장한다.
+			String ext = originFileName.substring(originFileName.lastIndexOf("."));
+			// 랜덤한 파일이름을 생성한 후 뒤에 확장자를 붙인다.
+			savedName = UUID.randomUUID().toString().replace("-", "") + ext;
+			
+			// boardDTO에 변경한 파일명을 set
 			boardDTO.setImgName(savedName);
 			
-			System.out.println("img넣은 후>> " + boardDTO);
+			try {
+				
+				// 이미지 파일을 생성한다.
+				img.transferTo(new File(filePath + "/" + savedName)); 
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+
+				// 오류 발생 시 생성한 파일을 삭제한다.
+				new File(filePath + "/" + savedName).delete();
+				
+				model.addAttribute("msg", "게시글 작성 실패..");
+
+				return "common/errorPage";
+				
+			}
+			
+		} // img가 있을 때
+		
+		System.out.println("이미지 있나 없나 확인: " + boardDTO);
+		
+		try {
 			
 			boardService.insertBoard(boardDTO);
 			
+			// mapper에서 useGeneratedKeys="true" keyProperty="boardNo" 해줬기 때문에 boardDTO에 insert한 게시글의 No가 담겨 있다.
 			int boardNo = boardDTO.getBoardNo();
 			
-			model.addAttribute("boardDTO", boardDTO);
-			
-			System.out.println("insertBoard 후>> " + boardDTO);
-			
+			// insert한 그 글의 detail로 바로 가게끔 boardNo를 파라미터로 같이 보낸다.
 			return "redirect:/board/boardDetail?boardNo="+boardNo;
 		
 		} catch (Exception e) {
 			
 			e.printStackTrace();
-
+			
+			// 오류 발생 시 생성한 파일을 삭제한다.
 			new File(filePath + "/" + savedName).delete();
 			
 			model.addAttribute("msg", "게시글 작성 실패..");

@@ -71,7 +71,7 @@
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th>번호</th>
+							<th>글 번호</th>
 							<th>제목</th>
 							<th>작성자</th>
 							<th>조회수</th>
@@ -95,7 +95,7 @@
 			int pages = (int) request.getAttribute("pages");
 			for (int p = 1; p <= pages; p++) {
 			%>
-			<button><%=p%></button>
+			<button class="pages"><%=p%></button>
 			<%
 			}
 			%>
