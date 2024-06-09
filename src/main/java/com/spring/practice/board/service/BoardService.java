@@ -11,4 +11,10 @@ public interface BoardService {
 
 	int selectCount() throws Exception;
 
+	void insertBoard(BoardDTO boardDTO) throws Exception;
+
+	BoardDTO boardDetail(int boardNo) throws Exception;
+
+	void addViews(int boardNo) throws Exception;
+
 }

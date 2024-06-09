@@ -21,7 +21,6 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>No.</th>
 					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
@@ -31,13 +30,11 @@
 			<c:forEach items="${list}" var="one">
 				<tbody>
 					<tr class="clickable">
-						<td>${one.rownum}</td>
-						<td>${one.boardNo}</td>
-						<td><a href="boardDetail?boardNo=${one.boardNo}">${one.title}</a></td>
+						<td>${one.boardNo}<input type="hidden" value="boardDetail?boardNo=${one.boardNo}"></td>
+						<td>${one.title}</td>
 						<td>${one.writer}</td>
 						<td>${one.views}</td>
 					</tr>
-
 				</tbody>
 			</c:forEach>
 		</table>

@@ -39,4 +39,30 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
+	@Override
+	public void insertBoard(BoardDTO boardDTO) throws Exception {
+		
+		boardDAO.insertBoard(sqlSession, boardDTO);
+		
+	}
+
+
+	@Override
+	public BoardDTO boardDetail(int boardNo) throws Exception {
+		
+		return boardDAO.boardDetail(sqlSession, boardNo);
+		
+	}
+
+
+	@Override
+	public void addViews(int boardNo) throws Exception {
+		
+		System.out.println("addViews 실행됨!!!!!!!!!!!");
+		
+		boardDAO.addViews(sqlSession, boardNo);
+		
+	}
+
+
 }

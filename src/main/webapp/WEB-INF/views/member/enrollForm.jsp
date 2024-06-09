@@ -13,7 +13,7 @@
     
     <div class="content" style="padding: 10px 40px 40px 40px">
         <div class="innerOuter" style="padding: 0% 30% 0% 0%">
-            <h2>회원가입</h2>
+            <h2>회원 가입</h2>
             <br>
 
 			<form id="enrollForm" action="insertMember" class="was-validated" method="post">

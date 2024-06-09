@@ -6,6 +6,7 @@ public class BoardDTO {
 	private int boardNo;
 	private String title;
 	private String content;
+	private String imgName;
 	private String writer;
 	private int views;
 	private String createdDate;
@@ -36,6 +37,12 @@ public class BoardDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getImgName() {
+		return imgName;
+	}
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
 	public String getWriter() {
 		return writer;
 	}
@@ -65,9 +72,8 @@ public class BoardDTO {
 	@Override
 	public String toString() {
 		return "BoardDTO [rownum=" + rownum + ", boardNo=" + boardNo + ", title=" + title + ", content=" + content
-				+ ", writer=" + writer + ", views=" + views + ", createdDate=" + createdDate + ", modifiedDate="
-				+ modifiedDate + "]";
+				+ ", imgName=" + imgName + ", writer=" + writer + ", views=" + views + ", createdDate=" + createdDate
+				+ ", modifiedDate=" + modifiedDate + "]";
 	}
-	
 	
 }

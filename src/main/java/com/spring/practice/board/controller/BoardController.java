@@ -1,14 +1,23 @@
 package com.spring.practice.board.controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.practice.board.model.dto.BoardDTO;
 import com.spring.practice.board.model.dto.PageDTO;
 import com.spring.practice.board.service.BoardService;
+import com.spring.practice.member.model.dto.MemberDTO;
 
 @Controller
 @RequestMapping("/board")
@@ -59,7 +68,7 @@ public class BoardController {
 
 			model.addAttribute("pages", pages);
 
-			return "/board/boardMain";
+			return "board/boardMain";
 
 		} catch (Exception e) {
 
@@ -87,7 +96,7 @@ public class BoardController {
 
 			model.addAttribute("list", list);
 
-			return "/board/boardList";
+			return "board/boardList";
 
 		} catch (Exception e) {
 
@@ -101,4 +110,106 @@ public class BoardController {
 
 	}
 
+	@GetMapping("/insertForm")
+	public void boardInsertForm() {
+
+	}
+
+	@PostMapping("/insertBoard")
+	public String insertBoard(BoardDTO boardDTO, HttpServletRequest request, MultipartFile img, Model model) {
+
+		HttpSession session = request.getSession();
+		
+		// 파일을 저장할 경로 설정
+		String root = session.getServletContext().getRealPath("resources");
+				
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("loginUser");
+		String writer = memberDTO.getId();
+		boardDTO.setWriter(writer);
+		
+		System.out.println("root : " + root);
+		
+		String filePath = root + "/uploadFiles"; // mac은 \ 아니고 /
+		
+		// java.io의 File을 import
+		File mkdir = new File(filePath);
+		if(!mkdir.exists()) {
+			mkdir.mkdirs();
+		}
+		
+		// 파일명 변경 처리
+		// 첨부 파일의 이름을 가져온다.
+		String originFileName = img.getOriginalFilename();
+		// 거기서 확장자만 잘라서 변수에 저장한다.
+		String ext = originFileName.substring(originFileName.lastIndexOf("."));
+		// 랜덤한 파일이름을 생성한 후 뒤에 확장자를 붙인다.
+		String savedName = UUID.randomUUID().toString().replace("-", "") + ext;
+		
+		//파일을 저장한다.
+		try {
+			img.transferTo(new File(filePath + "/" + savedName)); // mac은 \ 아니고 /
+			
+			System.out.println("img넣기 전>> " + boardDTO);
+			
+			boardDTO.setImgName(savedName);
+			
+			System.out.println("img넣은 후>> " + boardDTO);
+			
+			boardService.insertBoard(boardDTO);
+			
+			int boardNo = boardDTO.getBoardNo();
+			
+			model.addAttribute("boardDTO", boardDTO);
+			
+			System.out.println("insertBoard 후>> " + boardDTO);
+			
+			return "redirect:/board/boardDetail?boardNo="+boardNo;
+		
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+
+			new File(filePath + "/" + savedName).delete();
+			
+			model.addAttribute("msg", "게시글 작성 실패..");
+
+			return "common/errorPage";
+			
+		}	
+	
+	}
+	
+	
+	
+	@RequestMapping("/boardDetail")
+	public String boardDetail(int boardNo, Model model) {
+
+		System.out.println("조회할 게시글의 번호는: " + boardNo);
+		
+		try {
+			
+			BoardDTO boardDTO = boardService.boardDetail(boardNo);
+			
+			boardDTO.setViews(boardDTO.getViews()+1);
+			
+			boardService.addViews(boardNo);
+			
+			model.addAttribute("boardDTO", boardDTO);
+			
+			return "board/boardDetail";
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+			model.addAttribute("msg", "게시글 작성 실패..");
+
+			return "common/errorPage";
+			
+		}
+		
+	}
+	
+	
+	
 }

@@ -39,7 +39,7 @@
 		// 각 tr 요소에 클릭 이벤트 추가
 		$('table').on('click', 'tr.clickable', function() {
 			// 현재 tr 요소 내의 a 태그 href 속성 가져오기
-			var url = $(this).find('a').attr('href');
+			var url = $(this).find('input').attr('value');
 			// url이 존재하면 해당 URL로 이동
 			if (url) {
 				window.location.href = url;
@@ -57,6 +57,39 @@
 		<div class="innerOuter" style="padding: 0% 10% 0% 0%">
 			<h2>자유 게시판</h2>
 			전체 글: ${count}개 <br> <br>
+			
+			<c:if test="${ !empty sessionScope.loginUser }">
+			<a href="insertForm">
+				<button class="btn btn-primary float-right">게시글 작성</button>
+			</a>
+			</c:if>
+			
+			<br>
+
+			<div id="d1">
+				<br>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>조회수</th>
+						</tr>
+					</thead>
+					<c:forEach items="${list}" var="one">
+						<tbody>
+							<tr class="clickable">
+								<td>${one.boardNo}<input type="hidden" value="boardDetail?boardNo=${one.boardNo}"></td>
+								<td>${one.title}</td>
+								<td>${one.writer}</td>
+								<td>${one.views}</td>
+							</tr>
+						</tbody>
+					</c:forEach>
+				</table>
+			</div>
+			<!-- d1 end -->
 
 			<%
 			int pages = (int) request.getAttribute("pages");
@@ -68,32 +101,6 @@
 			%>
 
 
-			<div id="d1">
-				<br>
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>No.</th>
-							<th>번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>조회수</th>
-						</tr>
-					</thead>
-					<c:forEach items="${list}" var="one">
-						<tbody>
-							<tr class="clickable">
-								<td>${one.rownum}</td>
-								<td>${one.boardNo}</td>
-								<td><a href="boardDetail?boardNo=${one.boardNo}">${one.title}</a></td>
-								<td>${one.writer}</td>
-								<td>${one.views}</td>
-							</tr>
-						</tbody>
-					</c:forEach>
-				</table>
-			</div> <!-- d1 end -->
-			
 		</div>
 	</div>
 

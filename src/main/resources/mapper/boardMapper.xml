@@ -12,7 +12,27 @@
 		where b2.rownum between #{start} and #{end}
 	</select>
 
+
 	<select id="selectCount" resultType="Integer">
 		select count(*) count from board
 	</select>
+	
+	
+	<insert id="insertBoard" parameterType="boardDTO" useGeneratedKeys="true" keyProperty="boardNo">
+		insert into board 
+		(title, content, imgName, writer)
+		values (#{title}, #{content} , #{imgName}, #{writer})
+	</insert>
+	
+	<select id="selectBoard" parameterType="int" resultType="boardDTO">
+		select * from board
+		where boardNo = #{boardNo}
+	</select>
+	
+	<update id="updateViews" parameterType="int">
+		update board
+		set views = views+1
+		where boardNo=#{boardNo}
+	</update>
+	
 </mapper>

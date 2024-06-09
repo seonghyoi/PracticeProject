@@ -8,31 +8,22 @@
 <style>
     /* div{border:1px solid red;} */
     #footer{
-        width:90%;
+        width:95%;
         height:200px;
         margin:auto;
-        margin-top:50px;
+        margin-top:10px;
     }
-    #footer-1{
-        width:90%;
+    #footer-2{
+        width:100%;
         height:20%;
         border-top:1px solid lightgray;
-        border-bottom:1px solid lightgray;
     }
     #footer-2{
         width:100%;
         height:80%;
     }
-    #footer-1, #footer-2{
-        padding-left:50px
-    }
-
-    #footer-1 > a{
-        text-decoration:none;
-        font-weight: 600;
-        margin:10px;
-        line-height: 40px;
-        color: black;
+    #footer-2{
+        padding-left:20px
     }
     #footer-2>p{
         margin: 0;
@@ -45,13 +36,7 @@
 </style>
 </head>
 <body>
-	<div id="footer">
-        <div id="footer-1">
-            <a href="#">오늘도</a> | 
-            <a href="#">행복한</a> | 
-            <a href="#">하루</a> | 
-            <a href="#">되세요</a> 
-        </div>
+	<div id="footer"> 
 
         <div id="footer-2">
             <p id="p1">
