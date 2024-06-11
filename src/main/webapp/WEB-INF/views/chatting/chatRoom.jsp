@@ -89,8 +89,8 @@
 })) -->
 	<div style="margin:30px">
 		<div class="input-group mb-3">
-			<span class="input-group-text">닉네임 입력:</span> 
-			<input type="text" class="form-control" id="from">
+			<span class="input-group-text">참여자</span> 
+			<input type="text" class="form-control" id="from" style="background-color:white" value="${ sessionScope.loginUser.name }" disabled>
 		</div>
 		<div align="center">
 			<button id="connect" onclick="connect();" class="btn btn-primary" style="width:200px">Connect</button>&nbsp;&nbsp;

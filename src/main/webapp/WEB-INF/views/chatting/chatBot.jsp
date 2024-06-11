@@ -85,23 +85,26 @@
 </script>
 </head>
 <body onload="connect();">
+<div style="margin:30px">
+<span class="input-group-text w-100 d-flex justify-content-center">챗봇</span>
 	<br>
-	<br>
-	<img src=resources/img/chat1.png width=100 height=100><img src=resources/img/chat3.png width=400 height=100>
-	<div class="alert alert-danger" style="width: 500px;">
-		<div>챗 봇>> 1)상품소개  	2)주문확인</div>
+	<div class="alert alert-danger">
+	
+		<div>1)상품소개  	2)주문확인</div>
 		<br>
+		
 		<div id="response">
 		
 		</div>
-		<div class="form-floating mb-3 mt-3" id="conversationDiv">
-		<table>
-		<tr>
-			<td><input type="text" class="form-control" id="text" style="width: 400px; background: yellow"></td>
-			<td><button id="sendMessage" onclick="sendMessage();"class="btn btn-primary">Send</button></td>
-		</tr>
-		</table>
-		</div>
+		
+		<div class="input-group" id="conversationDiv">
+            <input type="text" class="form-control" id="text">&nbsp;&nbsp;
+            <div class="input-group-append">
+                <button id="sendMessage" onclick="sendMessage();" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+		
 	</div>
+</div>
 </body>
 </html>

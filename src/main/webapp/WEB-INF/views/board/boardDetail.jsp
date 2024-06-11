@@ -37,8 +37,19 @@
 			</div>
 
 			<a href="boardMain?page=1">
-				<button class="btn btn-primary">게시글 목록으로</button>
-			</a>
+				<button class="btn btn-primary">게시글 목록</button>
+			</a>&nbsp;
+			
+			<c:if test="${boardDTO.writer == sessionScope.loginUser.id}">
+				<a href="updateForm">
+					<button class="btn btn-primary">게시글 수정</button>
+				</a>&nbsp;
+				<a href="deleteBoard">
+					<button class="btn btn-danger">게시글 삭제</button>
+				</a>&nbsp;
+			</c:if>
+			
+			
 		</div>
 	</div>
 

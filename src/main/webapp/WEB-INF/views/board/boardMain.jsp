@@ -17,6 +17,7 @@
 
 <script type="text/javascript">
 	$(function() {
+		
 		$('.pages').click(function() {
 			$.ajax({
 				url : "boardList",
@@ -31,22 +32,19 @@
 				}
 			}) //ajax
 		})
-	})
-</script>
-
-<script>
-	$(document).ready(function() {
-		// 각 tr 요소에 클릭 이벤트 추가
-		$('table').on('click', 'tr.clickable', function() {
-			// 현재 tr 요소 내의 a 태그 href 속성 가져오기
+		
+		$('#d1').on('click', 'tr.clickable', function() {
+			// 현재 tr 요소 내의 input 태그의 value 속성 가져오기
 			var url = $(this).find('input').attr('value');
 			// url이 존재하면 해당 URL로 이동
 			if (url) {
 				window.location.href = url;
 			}
 		});
-	});
+		
+	})
 </script>
+
 
 </head>
 <body>

@@ -110,7 +110,7 @@ public class BoardController {
 
 	}
 
-	@GetMapping("/insertForm")
+	@RequestMapping("/insertForm")
 	public void boardInsertForm() {
 
 	}
@@ -235,6 +235,19 @@ public class BoardController {
 		}
 		
 	}
+	
+	
+	@RequestMapping("/updateForm")
+	public void boardUpdateForm() {
+
+	}
+	
+	
+	@RequestMapping("/deleteBoard")
+	public void deleteBoard() {
+		
+	}
+	
 	
 	
 	

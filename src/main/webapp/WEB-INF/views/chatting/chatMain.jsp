@@ -21,12 +21,12 @@
 		function chat() {
 		  
 	        let uniqueName = "chatbot_" + Date.now(); // Date.now()가 있어 계속 새로운 창이 생긴다.
-	        window.open("chatRoom", uniqueName, "width=640,height=400");
+	        window.open("chatRoom", uniqueName, "width=700,height=500");
 		}
 
 		function openChatBot() {
 			window.open("chatBot", "chatbot",
-					"width=400,height=400,menubar=no");
+					"width=700,height=500,menubar=no");
 		}
 	</script>
 	
@@ -35,10 +35,10 @@
     
     <div class="content" style="padding: 10px 40px 40px 40px; height: 500px;">
         <div class="innerOuter" style="padding: 0% 30% 0% 0%">
-            <h2>실시간 채팅</h2>
+            <h2>채팅 / 챗봇</h2>
             * 상대방에게 불쾌감을 줄 수 있는 표현은 삼가해 주세요.
 			<br><br>
-			<button class="btn btn-primary" onclick="chat()">실시간 채팅 참여</button>
+			<button class="btn btn-primary" onclick="chat()">실시간 채팅 참여</button>&nbsp;&nbsp;
 			<button class="btn btn-primary" onclick="openChatBot()">챗봇과 대화</button>
 
         </div>
