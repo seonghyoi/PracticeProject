@@ -56,7 +56,7 @@
 			      <a class="nav-link" href="${ pageContext.servletContext.contextPath }/board/boardMain?page=1">게시판</a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="#">사진</a>
+			      <a class="nav-link" href="${ pageContext.servletContext.contextPath }/chatting/chatMain">채팅</a>
 			    </li>
 			    <li class="nav-item">
 			      <a class="nav-link" href="#">지도</a>

@@ -53,7 +53,7 @@
 	<!-- 메뉴바 -->
 	<jsp:include page="../common/menubar.jsp" />
 
-	<div class="content" style="padding: 10px 40px 40px 40px">
+	<div class="content" style="padding: 10px 40px 40px 40px; height: 800px;">
 		<div class="innerOuter" style="padding: 0% 10% 0% 0%">
 			<h2>자유 게시판</h2>
 			전체 글: ${count}개 <br> <br>

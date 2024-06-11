@@ -13,7 +13,7 @@
  <!-- 이쪽에 메뉴바 포함 할꺼임 -->
     <jsp:include page="../common/menubar.jsp"/>
     
-	<div class="content" style="padding: 10px 40px 40px 40px">
+	<div class="content" style="padding: 10px 40px 40px 40px; height: 500px;">
         <div class="innerOuter" style="padding: 0% 30% 0% 0%">
             <h2>마이페이지</h2>
             
