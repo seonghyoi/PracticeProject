@@ -32,7 +32,13 @@
 	<update id="updateViews" parameterType="int">
 		update board
 		set views = views+1
-		where boardNo=#{boardNo}
+		where boardNo = #{boardNo}
 	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete
+		from board
+		where boardNo = #{boardNo}
+	</delete>
 	
 </mapper>

@@ -17,4 +17,6 @@ public interface BoardService {
 
 	void addViews(int boardNo) throws Exception;
 
+	void deleteBoard(int boardNo) throws Exception;
+
 }

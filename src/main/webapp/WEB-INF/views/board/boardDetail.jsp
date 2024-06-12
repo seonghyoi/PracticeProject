@@ -44,7 +44,7 @@
 				<a href="updateForm">
 					<button class="btn btn-primary">게시글 수정</button>
 				</a>&nbsp;
-				<a href="deleteBoard">
+				<a href="deleteBoard?boardNo=${boardDTO.boardNo}">
 					<button class="btn btn-danger">게시글 삭제</button>
 				</a>&nbsp;
 			</c:if>

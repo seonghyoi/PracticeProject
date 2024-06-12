@@ -82,7 +82,7 @@ public class BoardController {
 
 	}
 
-	// 보드 메인을 불러옴
+	// 보드 리스트 불러옴 (ajax)
 	@RequestMapping("/boardList")
 	public String boardList(PageDTO pageDTO, Model model) {
 
@@ -244,7 +244,27 @@ public class BoardController {
 	
 	
 	@RequestMapping("/deleteBoard")
-	public void deleteBoard() {
+	public String deleteBoard(int boardNo, Model model) {
+		
+		System.out.println("삭제할 게시글 번호: " + boardNo);
+		
+		try {
+			
+			boardService.deleteBoard(boardNo);
+			
+			return "redirect:/board/boardMain?page=1";
+			
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+			model.addAttribute("msg", "게시글 삭제 실패..");
+			
+			return "common/errorPage";
+			
+		}
+		
 		
 	}
 	
